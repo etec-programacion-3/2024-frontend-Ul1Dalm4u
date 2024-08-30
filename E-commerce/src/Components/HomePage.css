@@ -1,22 +1,29 @@
 /* HomePage.css */
 
 header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(0, 0, 0);
-    z-index: 1000;
-    box-shadow: 0 4px 2px -2px gray;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(0, 0, 0);
+    border-top: 1px solid black;
+  box-sizing: border-box; 
+}
+  p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
   }
   
   .header p {
-    font-size: 27px;
+    font-size: 15px;
   }
 
   .title {
@@ -45,7 +52,6 @@ header {
   
   main {
     padding: 100px 20px;
-    text-align: center;
   }
 
   h3 {
@@ -74,9 +80,10 @@ header {
   }
   
   .slide p {
-    font-size: 11px;
+    font-size: 16px;
     margin: 0;
     border: 1px black;
+    padding: 10px;
   }
   
   @keyframes scroll {
@@ -94,32 +101,60 @@ header {
     padding: 15px;
  }
  
-
- .cuerpo > img {
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-}
-.cuerpo img {
-    object-fit: cover;
-    object-position: center top;
+ .cuerpo {
+  margin: 0;
+  padding: 15px;
 }
 
- brb {
-        font-family: Bookish, sans-serif, -apple-system;
-        font-weight: 400;
-        line-height: 1;
-        text-transform: capitalize;
-        overflow-wrap: break-word;
-        font-size: 6.4rem;
- }
-
- brb > p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    unicode-bidi: isolate;
+.cuerpo > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  user-select: none;
+  
 }
+text_cuerpo > p{
+  font-family: IBMPlexMono, sans-serif, -apple-system;
+  font-weight: 400;
+  color: var(--color-black);
+  font-size: 1.2rem;
+  line-height: 1.33;
+  margin: 0;
+}
+
+.brb {
+  font-family:Tahoma, sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: capitalize;
+  overflow-wrap: break-word;
+  font-size: 9.5vh;
+  position: absolute; /* Position text absolutely over the image */
+  bottom: -155px; /* Position at the bottom */
+  left: 10px; /* Position at the left */
+}
+
+.brb > p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+  font-size: 76px;
+  font-family: sans-serif;
+}
+
+p::selection,
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection,
+span::selection,
+div::selection {
+  background-color: #a8d5a2; /* Color de fondo verdoso */
+  color: black; /* Color del texto */
+}
+
