@@ -10,7 +10,7 @@ header {
   justify-content: space-between;
   align-items: center;
   color: rgb(0, 0, 0);
-    border-top: 1px solid black;
+  border-top: 1px solid black;
   box-sizing: border-box; 
 }
   p{
@@ -101,10 +101,6 @@ header {
     padding: 15px;
  }
  
- .cuerpo {
-  margin: 0;
-  padding: 15px;
-}
 
 .cuerpo > img {
   width: 100%;
@@ -114,36 +110,26 @@ header {
   user-select: none;
   
 }
-text_cuerpo > p{
+  .text_cuerpo{
   font-family: IBMPlexMono, sans-serif, -apple-system;
   font-weight: 400;
   color: var(--color-black);
   font-size: 1.2rem;
   line-height: 1.33;
-  margin: 0;
+  text-align: left;
+  padding: 40px;
 }
 
 .brb {
-  font-family:Tahoma, sans-serif;
-  font-weight: 400;
-  line-height: 1;
   text-transform: capitalize;
-  overflow-wrap: break-word;
   font-size: 9.5vh;
-  position: absolute; /* Position text absolutely over the image */
-  bottom: -155px; /* Position at the bottom */
+  bottom: 65px; /* Position at the bottom */
   left: 10px; /* Position at the left */
+  position: relative;
+  margin: 0;
+
 }
 
-.brb > p {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  unicode-bidi: isolate;
-  font-size: 76px;
-  font-family: sans-serif;
-}
 
 p::selection,
 h1::selection,
@@ -154,7 +140,34 @@ h5::selection,
 h6::selection,
 span::selection,
 div::selection {
-  background-color: #a8d5a2; /* Color de fondo verdoso */
+  background-color: #c3cec2; /* Color de fondo verdoso */
   color: black; /* Color del texto */
 }
+
+img::selection{
+  user-select: none;
+}
+
+.gender_selection {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  gap: 30px; /* Espacio entre las imágenes */
+  padding: 20px;
+}
+
+.gender_item {
+  position: relative;
+  text-align: center; 
+  width: 100%;
+  max-width: 500px; 
+}
+
+.gender_item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 600px; 
+}
+
 
