@@ -84,9 +84,9 @@ const HomePage = () => {
         <p>Perito Moreno 2397, Godoy Cruz</p>
         <h3 className='title'>ULI _ TINO</h3>
         <div className='top_right_header'>
-          <p>Login</p>
+          <a href='/login'><p>Login</p></a>
           <CiSearch />
-          <CiHeart />
+          <CiHeart /> 
           <CiBag1 />
         </div>
       </header>
@@ -111,14 +111,14 @@ const HomePage = () => {
           ))}
         </div>
         <div className="gender_selection">
-          <div className="gender_item">
+          <a href=""><div className="gender_item">
             <p>HOMBRE</p>
             <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/60b579fe-c7b0-4baf-ad70-76fc30d5155f___c7585bf6ce77983e2ee8998a2325e0e8.jpg" alt="Hombre" />
-          </div>
-          <div className="gender_item">
+          </div></a>
+          <a href=''><div className="gender_item">
             <p>MUJER</p>
             <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/4896be05-fecc-4c38-a589-98f1c280b15f___ad1c34ec624f56b2d45af4a8c466d1a8.jpg" alt="Mujer" />
-          </div>
+          </div></a>
         </div>
       </main>
     </div>
