@@ -1,0 +1,10 @@
+.form{
+    display: flex;
+    margin: 50px;
+    gap: 17%;
+}
+
+.login_item{
+    border: 1px lineal black;
+}
+
