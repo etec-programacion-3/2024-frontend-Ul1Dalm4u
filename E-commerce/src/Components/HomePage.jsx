@@ -2,6 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import { CiSearch, CiHeart, CiBag1 } from "react-icons/ci";
 import ProductCard from './ProductCard'; // Asegúrate de que la ruta sea correcta
+import Header from './Header'; // Importamos el Header
 
 const HomePage = () => {
   // Definir los productos
