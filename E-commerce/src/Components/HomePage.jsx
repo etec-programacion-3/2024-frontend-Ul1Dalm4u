@@ -81,16 +81,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <header>
-        <p>Perito Moreno 2397, Godoy Cruz</p>
-        <h3 className='title'>ULI _ TINO</h3>
-        <div className='top_right_header'>
-          <a href='/login'><p>Login</p></a>
-          <CiSearch />
-          <CiHeart /> 
-          <CiBag1 />
-        </div>
-      </header>
+      <Header />
       <main className='cuerpo'>
         <img src="https://www.off---white.com/BWStaticContent/53000/26bc1ecf-9fb1-4bb4-a7af-f246bec08945_off-white-brb-batch-1-57.jpg" alt="" />
         <p className='brb'>"BE RIGHT BACK"</p>
