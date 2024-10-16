@@ -43,13 +43,3 @@
 .search-button:hover {
     background-color: #1f2020;
 }
-
-/* Overlay styles */
-.overlay {
-    position: relative;
-    top: 100;
-    left: 100;
-    right: 100;
-    bottom: 100;
-    transition: background-color 0.3s ease; /* Suaviza la animación del fondo */
-}

@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { CiSearch, CiHeart, CiBag1 } from "react-icons/ci";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './Searchbar';
-import './HomePage.css';
+import './HomePage.css'; // Asegúrate de tener estilos para el Header
 
-const Header = () => {
+const Header = ({ onSearch }) => {
     const [searchVisible, setSearchVisible] = useState(false);
+    const navigate = useNavigate();
 
     const toggleSearch = () => {
         setSearchVisible(!searchVisible);
     };
 
+    const handleSearchSubmit = (searchQuery) => {
+        onSearch(searchQuery);
+        setSearchVisible(false);
+        navigate('/search', { state: { searchQuery } });
+    };
+
     return (
-        <>
+        <div>
             <header>
                 <p>Perito Moreno 2397, Godoy Cruz</p>
                 <Link to='/' className='title-link'>
@@ -27,9 +34,9 @@ const Header = () => {
                     <CiBag1 aria-label="Shopping Cart" />
                 </div>
             </header>
-            {searchVisible && <SearchBar onClose={toggleSearch} />}
+            {searchVisible && <SearchBar onClose={toggleSearch} onSubmit={handleSearchSubmit} />}
             {searchVisible && <div className="overlay" onClick={toggleSearch}></div>}
-        </>
+        </div>
     );
 };
 

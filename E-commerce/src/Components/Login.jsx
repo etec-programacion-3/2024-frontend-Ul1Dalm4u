@@ -9,14 +9,6 @@ const Login = () => {
 
     return (
         <div>
-            <div className="slider">
-                <div className="slide_track">
-                    <div className="slide">
-                        <p>~ 10% Off Your First Order On Full Price Items ~</p>
-                    </div>
-                </div>
-            </div>
-            <Header />
             <div className="form-container">
                 <div className="form">
                     {/* Sección de inicio de sesión */}
