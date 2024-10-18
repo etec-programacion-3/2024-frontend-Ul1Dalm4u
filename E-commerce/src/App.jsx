@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Combina ambas importaciones de React en una sola
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Components/HomePage';
 import LoginPage from './Components/Login';
@@ -14,8 +14,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/search" element={<ProductPage searchQuery={searchQuery} />} /> {/* Nueva ruta para ProductPage */}
-        {/* Otras rutas */}
+        <Route path="/search" element={<ProductPage searchQuery={searchQuery} />} />
+        <Route path="/products" element={<ProductPage searchQuery={searchQuery} />} /> {/* Asegúrate de que esta ruta esté aquí */}
       </Routes>
     </Router>
   );
