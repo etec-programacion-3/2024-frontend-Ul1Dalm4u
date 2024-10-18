@@ -3,7 +3,7 @@ import './HomePage.css';
 import ProductCard from './ProductCard'; // Asegúrate de que la ruta sea correcta
 import Header from './Header'; // Importamos el Header
 
-const HomePage = () => {
+const HomePage =   () => {
   // Definir los productos
   const products = [
     {
@@ -16,7 +16,8 @@ const HomePage = () => {
       ],
       name: 'Ow Be Right Back Sneakers (Milan)',
       description: 'This is a brief description of the product. It includes key details and features.',
-      price: '$99.99'
+      price: '$99.99',
+      gender: 'man',
     },
     {
       id: 'product2',
@@ -28,7 +29,8 @@ const HomePage = () => {
       ],
       name: 'Ow Be Right Back Sneakers (New York)',
       description: 'This is a brief description of the product. It includes key details and features.',
-      price: '$109.99'
+      price: '$109.99',
+      gender: 'woman',
     },
     {
       id: 'product3',
@@ -40,7 +42,8 @@ const HomePage = () => {
       ],
       name: 'Ow Be Right Back Sneakers (Paris)',
       description: 'This is a brief description of the product. It includes key details and features.',
-      price: '$109.99'
+      price: '$109.99',
+      gender: 'woman',
     },
     {
       id: 'product4',
@@ -52,7 +55,8 @@ const HomePage = () => {
       ],
       name: 'Ow Be Right Back Sneakers (Miami)',
       description: 'This is a brief description of the product. It includes key details and features.',
-      price: '$109.99'
+      price: '$109.99',
+      gender: 'man',
     },
     {
       id: 'product5',
@@ -64,7 +68,8 @@ const HomePage = () => {
       ],
       name: 'Camiseta ',
       description: 'This is a brief description of the product. It includes key details and features.',
-      price: '$109.99'
+      price: '$109.99',
+      gender: 'man',
     },
   ];
 
@@ -95,19 +100,19 @@ const HomePage = () => {
           ))}
         </div>
         <div className="gender_selection">
-          <a href="">
-            <div className="gender_item">
-              <p>HOMBRE</p>
-              <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/60b579fe-c7b0-4baf-ad70-76fc30d5155f___c7585bf6ce77983e2ee8998a2325e0e8.jpg" alt="Hombre" />
-            </div>
-          </a>
-          <a href=''>
-            <div className="gender_item">
-              <p>MUJER</p>
-              <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/4896be05-fecc-4c38-a589-98f1c280b15f___ad1c34ec624f56b2d45af4a8c466d1a8.jpg" alt="Mujer" />
-            </div>
-          </a>
-        </div>
+        <a href="/products?gender=man">
+          <div className="gender_item">
+            <p>HOMBRE</p>
+            <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/60b579fe-c7b0-4baf-ad70-76fc30d5155f___c7585bf6ce77983e2ee8998a2325e0e8.jpg" alt="Hombre" />
+          </div>
+        </a>
+        <a href="/products?gender=woman">
+          <div className="gender_item">
+            <p>MUJER</p>
+            <img src="https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/4896be05-fecc-4c38-a589-98f1c280b15f___ad1c34ec624f56b2d45af4a8c466d1a8.jpg" alt="Mujer" />
+          </div>
+        </a>
+      </div>
       </main>
     </div>
   );
