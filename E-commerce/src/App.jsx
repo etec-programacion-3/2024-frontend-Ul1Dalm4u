@@ -8,7 +8,7 @@ import ProductDetailsPage from './Components/ProductDetailsPage';
 import productsData from './Components/data'; 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
-
+import axios from 'axios';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
