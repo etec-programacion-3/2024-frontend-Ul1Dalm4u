@@ -61,8 +61,6 @@ header {
     top: 50%;
     width: 30px;
     height: 30px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
     border: none;
     cursor: pointer;
     border-radius: 50%;
