@@ -54,6 +54,7 @@ header {
     width: 100%; /* Asegúrate de que la imagen ocupe todo el ancho */
     height: 20%; /* Asegúrate de que la imagen ocupe toda la altura */ /* Mantiene la proporción y recorta si es necesario */
     margin-top: -70px;
+    max-height: 700px;
 }
 
 .prev, .next {
