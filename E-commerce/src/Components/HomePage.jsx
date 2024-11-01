@@ -1,19 +1,49 @@
 // src/Components/HomePage.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import ProductCard from './ProductCard'; // Asegúrate de que la ruta sea correcta
 import Header from './Header'; // Importamos el Header
-import products from './data'; // Importa el archivo de datos
+import axios from 'axios'; // Importa Axios
 
 const HomePage = () => {
+    const [products, setProducts] = useState([]); // Estado para los productos
+    const [loading, setLoading] = useState(true); // Estado de carga
+    const [error, setError] = useState(null); // Estado de error
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://192.168.42.15:3000/products'); // Ajusta la URL según sea necesario
+                setProducts(response.data); // Guarda los productos en el estado
+                setError(null); // Limpia el error si la solicitud fue exitosa
+            } catch (err) {
+                console.error("Error fetching products:", err);
+                setError("Error al cargar los productos"); // Manejo de error
+            } finally {
+                setLoading(false); // Cambia el estado de carga
+            }
+        };
+        
+        fetchProducts(); // Llama a la función para obtener los productos
+    }, []); // Este efecto solo se ejecuta una vez al montar el componente
+
     // Filtra los productos que contienen "Ow Be Right Back Sneakers"
     const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes('ow be right back sneakers')
+        product.name.toLowerCase().includes('air')
     );
+
+    if (loading) {
+        return <p>Cargando productos...</p>; // Mensaje de carga
+    }
+
+    if (error) {
+        return <p>{error}</p>; // Mensaje de error
+    }
 
     return (
         <div>
+            <Header /> {/* Asegúrate de que el Header esté bien importado */}
             <main className='cuerpo'>
                 <img src="https://www.off---white.com/BWStaticContent/53000/26bc1ecf-9fb1-4bb4-a7af-f246bec08945_off-white-brb-batch-1-57.jpg" alt="Be Right Back" />
                 <p className='brb'>"BE RIGHT BACK"</p>

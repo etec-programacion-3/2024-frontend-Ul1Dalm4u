@@ -5,9 +5,6 @@ import LoginPage from './Components/Login';
 import ProductPage from './Components/ProductPage';
 import Header from './Components/Header';
 import ProductDetailsPage from './Components/ProductDetailsPage';
-import productsData from './Components/data'; 
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css"; 
 import axios from 'axios';
 
 const App = () => {
@@ -15,12 +12,20 @@ const App = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Carga los productos desde la base de datos importada
-    setProducts(productsData); // Asegúrate de usar productsData
+    // Conéctate al servidor remoto con Axios para obtener los datos
+    axios.get('http://192.168.42.15:3000/products') // Asegúrate de que la IP y puerto coincidan con tu servidor
+      .then(response => {
+        console.log(response.data);
+        setProducts(response.data); // Asigna los productos obtenidos
+      })
+      .catch(error => {
+        console.error("Error al cargar los productos:", error);
+      });
   }, []);
 
   return (
     <Router>
+      {/* El Header solo se renderiza aquí */}
       <Header onSearch={setSearchQuery} />
       <Routes>
         <Route path="/" element={<HomePage />} />

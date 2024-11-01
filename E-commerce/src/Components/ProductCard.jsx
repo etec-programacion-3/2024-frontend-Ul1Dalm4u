@@ -1,37 +1,72 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "./ProductCard.css";
+// src/Components/ProductPage.jsx
 
-const ProductCard = ({ productId, productImages, productName, productDescription, productPrice }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import ProductCard from './ProductCard';
+import axios from 'axios'; // Asegúrate de importar Axios
+import './ProductCard.css';
 
-  const changeImage = (direction) => {
-    const newIndex = (currentIndex + direction + productImages.length) % productImages.length;
-    setCurrentIndex(newIndex);
-  };
+const ProductPage = ({ searchQuery }) => {
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const location = useLocation(); // Para acceder a los parámetros de la URL
 
-  const handleProductClick = () => {
-    window.open(`/products/${productId}`, '_blank');
-  };
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://192.168.42.15:3000/products'); // Asegúrate de que la IP y puerto coincidan con tu servidor
+                setFilteredProducts(response.data); // Asigna los productos obtenidos
+            } catch (error) {
+                console.error("Error al cargar los productos:", error);
+            }
+        };
 
-  return (
-    <div className="card" id={productId}>
-      <div className="card_image">
-        <div className="slider">
-          <img className="sliderImage" src={productImages[currentIndex]} alt="Product" onClick={handleProductClick} />
+        fetchProducts(); // Llama a la función para obtener los productos
+    }, []); // Solo se ejecuta una vez al montar el componente
+
+    useEffect(() => {
+        const query = new URLSearchParams(location.search);
+        const gender = query.get('gender'); // Obtenemos el género de la URL
+
+        // Filtramos productos basados en la búsqueda
+        let results = filteredProducts; // Usamos los productos filtrados
+        if (searchQuery) {
+            results = results.filter(product =>
+                product.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+        // Filtramos por género si se proporciona
+        if (gender) {
+            results = results.filter(product =>
+                product.gender.toLowerCase() === gender.toLowerCase()
+            );
+        }
+
+        setFilteredProducts(results);
+    }, [location.search, searchQuery, filteredProducts]); // Agregar filteredProducts a las dependencias
+
+    return (
+        <div className="product-page">
+            <h4>
+                Resultados de búsqueda para: {searchQuery ? searchQuery : 'Género Seleccionado'}
+            </h4>
+            <div className="product-list">
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map(product => (
+                        <ProductCard
+                            key={product.id}
+                            productId={product.id}
+                            productImages={product.images}
+                            productName={product.name}
+                            productDescription={product.description}
+                            productPrice={product.price}
+                        />
+                    ))
+                ) : (
+                    <p>No se encontraron productos</p>
+                )}
+            </div>
         </div>
-        <div onClick={(e) => e.stopPropagation()}>
-          <button className="prev" onClick={() => changeImage(-1)}>&#10094;</button>
-          <button className="next" onClick={() => changeImage(1)}>&#10095;</button>
-        </div>
-      </div>
-      <div className="card_text" onClick={handleProductClick}>
-        <h2>{productName}</h2>
-        <p>{productDescription}</p>
-        <p>{productPrice}</p>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default ProductCard;
+export default ProductPage;

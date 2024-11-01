@@ -1,23 +1,59 @@
-import React, { useState } from 'react';
+// src/Components/ProductDetailsPage.jsx
+
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './ProductDetailsPage.css';
 
-const ProductDetailsPage = ({ products }) => {
+const ProductDetailsPage = () => {
   const { productId } = useParams();
-  const product = products.find(p => p.id === productId);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://192.168.42.15:3000/products');
+        const foundProduct = response.data.find(p => p.id === parseInt(productId, 10));
+        if (foundProduct) {
+          setProduct(foundProduct);
+        } else {
+          setError("Producto no encontrado.");
+        }
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Error al cargar los productos");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [productId]);
+
+  const changeImage = (direction) => {
+    if (product) {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = (prevIndex + direction + product.images.length) % product.images.length;
+        return newIndex;
+      });
+    }
+  };
+
+  if (loading) {
+    return <p>Cargando producto...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   if (!product) {
     return <p>Producto no encontrado.</p>;
   }
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const changeImage = (direction) => {
-    setCurrentIndex((prevIndex) => {
-      const newIndex = (prevIndex + direction + product.images.length) % product.images.length;
-      return newIndex;
-    });
-  };
 
   return (
     <div className="product-details-container">
