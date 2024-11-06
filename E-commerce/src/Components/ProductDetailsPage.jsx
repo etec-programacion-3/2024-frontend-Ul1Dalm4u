@@ -13,34 +13,27 @@ const ProductDetailsPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://192.168.42.15:3000/products');
-        const foundProduct = response.data.find(p => p.id === parseInt(productId, 10));
-        if (foundProduct) {
-          setProduct(foundProduct);
-        } else {
-          setError("Producto no encontrado.");
-        }
+        const response = await axios.get(`http://192.168.42.15:3000/products/${productId}`);
+        setProduct(response.data);
         setError(null);
       } catch (err) {
-        console.error("Error fetching products:", err);
-        setError("Error al cargar los productos");
+        console.error("Error fetching product:", err);
+        setError("Error al cargar el producto");
       } finally {
         setLoading(false);
       }
     };
-    fetchProducts();
+    fetchProduct();
   }, [productId]);
 
   const changeImage = (direction) => {
-    if (product) {
-      setCurrentIndex((prevIndex) => {
-        const newIndex = (prevIndex + direction + product.images.length) % product.images.length;
-        return newIndex;
-      });
-    }
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + direction + product.images.length) % product.images.length;
+      return newIndex;
+    });
   };
 
   if (loading) {
