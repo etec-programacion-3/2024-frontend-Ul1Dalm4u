@@ -1,39 +1,46 @@
-// src/Components/ProductPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import products from './data'; // Importa el archivo de datos
-import './ProductPage.css';
+import axios from 'axios';
+import './ProductCard.css';
 
 const ProductPage = ({ searchQuery }) => {
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const location = useLocation(); // Para acceder a los parámetros de la URL
+    const [products, setProducts] = useState([]); // All products
+    const [displayedProducts, setDisplayedProducts] = useState([]); // Filtered list to display
+    const location = useLocation();
 
     useEffect(() => {
-        setFilteredProducts(products); // Muestra todos los productos inicialmente
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/products');
+                setProducts(response.data); // Store all products
+            } catch (error) {
+                console.error("Error al cargar los productos:", error);
+            }
+        };
+
+        fetchProducts();
     }, []);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
-        const gender = query.get('gender'); // Obtenemos el género de la URL
+        const gender = query.get('gender');
 
-        // Filtramos productos basados en la búsqueda
+        // Start with all products and filter based on searchQuery and gender
         let results = products;
         if (searchQuery) {
             results = results.filter(product =>
                 product.name.toLowerCase().includes(searchQuery.toLowerCase())
             );
         }
-        // Filtramos por género si se proporciona
         if (gender) {
             results = results.filter(product =>
                 product.gender.toLowerCase() === gender.toLowerCase()
             );
         }
 
-        setFilteredProducts(results);
-    }, [location.search, searchQuery]); // Agregar `searchQuery` a las dependencias
+        setDisplayedProducts(results); // Set the filtered list to display
+    }, [location.search, searchQuery, products]);
 
     return (
         <div className="product-page">
@@ -41,8 +48,8 @@ const ProductPage = ({ searchQuery }) => {
                 Resultados de búsqueda para: {searchQuery ? searchQuery : 'Género Seleccionado'}
             </h4>
             <div className="product-list">
-                {filteredProducts.length > 0 ? (
-                    filteredProducts.map(product => (
+                {displayedProducts.length > 0 ? (
+                    displayedProducts.map(product => (
                         <ProductCard
                             key={product.id}
                             productId={product.id}

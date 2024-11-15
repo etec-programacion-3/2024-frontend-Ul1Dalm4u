@@ -13,7 +13,7 @@ const ProductPage = ({ searchQuery }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://192.168.42.15:3000/products'); // Asegúrate de que la IP y puerto coincidan con tu servidor
+                const response = await axios.get('http://localhost:3000/products'); // Asegúrate de que la IP y puerto coincidan con tu servidor
                 setFilteredProducts(response.data); // Asigna los productos obtenidos
             } catch (error) {
                 console.error("Error al cargar los productos:", error);

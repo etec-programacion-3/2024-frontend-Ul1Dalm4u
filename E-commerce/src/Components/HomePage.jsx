@@ -14,7 +14,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://192.168.42.15:3000/products'); // Ajusta la URL según sea necesario
+                const response = await axios.get('http://localhost:3000/products'); // Ajusta la URL según sea necesario
                 setProducts(response.data); // Guarda los productos en el estado
                 setError(null); // Limpia el error si la solicitud fue exitosa
             } catch (err) {
@@ -43,7 +43,6 @@ const HomePage = () => {
 
     return (
         <div>
-            <Header /> {/* Asegúrate de que el Header esté bien importado */}
             <main className='cuerpo'>
                 <img src="https://www.off---white.com/BWStaticContent/53000/26bc1ecf-9fb1-4bb4-a7af-f246bec08945_off-white-brb-batch-1-57.jpg" alt="Be Right Back" />
                 <p className='brb'>"BE RIGHT BACK"</p>

@@ -16,7 +16,7 @@ const ProductDetailsPage = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('http://192.168.42.15:3000/products');
+        const response = await axios.get('http://localhost:3000/products');
         const foundProduct = response.data.find(p => p.id === parseInt(productId, 10));
         if (foundProduct) {
           setProduct(foundProduct);
