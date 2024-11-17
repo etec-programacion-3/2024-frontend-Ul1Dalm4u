@@ -1,44 +1,53 @@
-// src/Components/HomePage.jsx
-
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
-import ProductCard from './ProductCard'; // Asegúrate de que la ruta sea correcta
-import Header from './Header'; // Importamos el Header
-import axios from 'axios'; // Importa Axios
+import ProductCard from './ProductCard';
+import Header from './Header';
+import axios from 'axios';
+import imagesById from './data';  // Importamos el objeto imagesById
 
 const HomePage = () => {
-    const [products, setProducts] = useState([]); // Estado para los productos
-    const [loading, setLoading] = useState(true); // Estado de carga
-    const [error, setError] = useState(null); // Estado de error
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Define la función getImagesById
+    const getImagesById = (id) => {
+        return imagesById[id] || []; // Devuelve las imágenes si existen, o un array vacío si no
+    };
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/products'); // Ajusta la URL según sea necesario
-                setProducts(response.data); // Guarda los productos en el estado
-                setError(null); // Limpia el error si la solicitud fue exitosa
-            } catch (err) {
-                console.error("Error fetching products:", err);
-                setError("Error al cargar los productos"); // Manejo de error
-            } finally {
-                setLoading(false); // Cambia el estado de carga
+                const response = await axios.get('http://localhost:3000/products');
+                const fetchedProducts = response.data.map(product => {
+                    const productImages = getImagesById(product.id);
+                    return {
+                        ...product,
+                        images: productImages,
+                    };
+                });
+                setProducts(fetchedProducts);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                setError(error);
+                setLoading(false);
             }
         };
-        
-        fetchProducts(); // Llama a la función para obtener los productos
-    }, []); // Este efecto solo se ejecuta una vez al montar el componente
 
-    // Filtra los productos que contienen "Ow Be Right Back Sneakers"
+        fetchProducts();
+    }, []); // Se ejecuta solo una vez al montar el componente
+
     const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes('air')
+        product.name?.toLowerCase().includes('adi')
     );
 
     if (loading) {
-        return <p>Cargando productos...</p>; // Mensaje de carga
+        return <p>Cargando productos...</p>;
     }
 
     if (error) {
-        return <p>{error}</p>; // Mensaje de error
+        return <p>{error.message}</p>;
     }
 
     return (
@@ -50,7 +59,6 @@ const HomePage = () => {
                     "BE RIGHT BACK", the new sneaker that encourages you to "BE WELL" by leaning into life’s gray areas—the everyday moments that get you from where you’ve been to where you’re going. As sequel and complement to the iconic "OUT OF OFFICE" sneaker designed by Virgil Abloh in 2020, the "BRB" is all about making you time so you can be your best self. Positioned at the intersection of sport and style, it features iconic Off-White™ codes, including a brand-new take on the signature Arrow for a sense of velocity.
                 </p>
 
-                {/* Aquí se renderizan las tarjetas de productos filtrados */}
                 <div className="product-cards">
                     {filteredProducts.map(product => (
                         <ProductCard
@@ -59,11 +67,11 @@ const HomePage = () => {
                             productImages={product.images}
                             productName={product.name}
                             productDescription={product.description}
-                            productPrice={product.price}
+                            productPrice={`$${product.price}`}
                         />
                     ))}
                 </div>
-                
+
                 <div className="gender_selection">
                     <a href="/products?gender=man">
                         <div className="gender_item">

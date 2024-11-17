@@ -10,7 +10,6 @@ import CartPage from './Components/CartPage';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
   // Función para agregar productos al carrito
@@ -22,18 +21,6 @@ const App = () => {
   const removeFromCart = (productId) => {
     setCartItems(cartItems.filter(item => item !== productId)); // Eliminar producto del carrito
   };
-
-  useEffect(() => {
-    // Conéctate al servidor remoto con Axios para obtener los datos
-    axios.get('http://localhost:3000/products') // Asegúrate de que la IP y puerto coincidan con tu servidor
-      .then(response => {
-        console.log(response.data);
-        setProducts(response.data); // Asigna los productos obtenidos
-      })
-      .catch(error => {
-        console.error("Error al cargar los productos:", error);
-      });
-  }, []);
 
   return (
     <Router>
@@ -47,7 +34,7 @@ const App = () => {
         <Route path="/products" element={<ProductPage searchQuery={searchQuery} />} />
         <Route
           path="/products/:productId"
-          element={<ProductDetailsPage products={products} />} // Pasa los productos al componente ProductDetailsPage
+          element={<ProductDetailsPage />}
         />
       </Routes>
     </Router>
