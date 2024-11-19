@@ -68,7 +68,7 @@ const ProductPage = ({ searchQuery }) => {
                             productImages={product.images}
                             productName={product.name}
                             productDescription={product.description}
-                            productPrice={`$${product.price}`}
+                            productPrice={`Precio: $${product.price}`}
                         />
                     ))
                 ) : (

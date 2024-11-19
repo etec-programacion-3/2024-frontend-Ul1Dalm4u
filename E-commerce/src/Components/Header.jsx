@@ -30,9 +30,16 @@ const Header = ({ onSearch }) => {
                         <p>Login</p>
                     </Link>
                     <CiSearch aria-label="Search" onClick={toggleSearch} />
-                    <CiHeart aria-label="Favorites" />
+                    <CiHeart 
+                        aria-label="Favorites" 
+                        onClick={() => navigate('/favorites')} 
+                        className="icon-link"
+                    />
                     <CiBag1 
-                            aria-label="Shopping Cart" onClick={() => navigate('/CartPage')}/>
+                        aria-label="Shopping Cart" 
+                        onClick={() => navigate('/cart')} 
+                        className="icon-link"
+                    />
                 </div>
             </header>
             {searchVisible && <SearchBar onClose={toggleSearch} onSubmit={handleSearchSubmit} />}

@@ -13,5 +13,6 @@
     display: flex;  
     flex-wrap: wrap; /* Permitir que los productos se ajusten a varias filas */
     justify-content: space-around; /* Espaciado entre los productos */
+    gap: 5px;
 }
 

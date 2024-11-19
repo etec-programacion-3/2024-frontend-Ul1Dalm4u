@@ -39,7 +39,7 @@ const HomePage = () => {
     }, []); // Se ejecuta solo una vez al montar el componente
 
     const filteredProducts = products.filter(product =>
-        product.name?.toLowerCase().includes('adi')
+        product.name?.toLowerCase().includes('ow be right back')
     );
 
     if (loading) {
@@ -67,7 +67,7 @@ const HomePage = () => {
                             productImages={product.images}
                             productName={product.name}
                             productDescription={product.description}
-                            productPrice={`$${product.price}`}
+                            productPrice={`Precio: $${product.price}`}
                         />
                     ))}
                 </div>

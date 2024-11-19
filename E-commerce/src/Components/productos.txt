@@ -1,0 +1,30 @@
+{
+  "name": "Ow Be Right Back ¨Paris",
+  "description": "The new 'BE RIGHT BACK' sneakers merge performance running aesthetics with Japanese design principles.",
+  "price": "615",
+  "stock": "40",
+  "gender": "man"
+}
+
+{
+  "name": "Ow be right back (new york)",
+  "description": "The new 'BE RIGHT BACK' sneakers merge performance running aesthetics with Japanese design principles.",
+  "price": "615",
+  "stock": "15",
+  "gender": "man"
+}
+
+{
+  "name": "Ow Be Right Back (miami)",
+  "description": "The new 'BE RIGHT BACK' sneakers merge performance running aesthetics with Japanese design principles.",
+  "stock": "40",
+  "gender": "man"
+}
+
+{
+  "name": "Ow Be Right Back (milan)",
+  "description": "The new 'BE RIGHT BACK' sneakers merge performance running aesthetics with Japanese design principles.",
+  "price": "615",
+  "stock": "15",
+  "gender": "man"
+}
